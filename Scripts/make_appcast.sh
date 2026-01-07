@@ -19,7 +19,6 @@ ZIP_DIR=$(cd "$(dirname "$ZIP")" && pwd)
 ZIP_NAME=$(basename "$ZIP")
 ZIP_BASE="${ZIP_NAME%.zip}"
 VERSION=${SPARKLE_RELEASE_VERSION:-}
-BUILD_NUMBER=${SPARKLE_BUILD_NUMBER:-}
 if [[ -z "$VERSION" ]]; then
   if [[ "$ZIP_NAME" =~ ^[^-]+-([0-9]+(\.[0-9]+){1,2}([-.][^.]*)?)\.zip$ ]]; then
     VERSION="${BASH_REMATCH[1]}"
@@ -27,13 +26,6 @@ if [[ -z "$VERSION" ]]; then
     echo "Could not infer version from $ZIP_NAME; set SPARKLE_RELEASE_VERSION." >&2
     exit 1
   fi
-fi
-if [[ -z "$BUILD_NUMBER" ]]; then
-  BUILD_NUMBER=$(awk -F= '/^BUILD_NUMBER=/{print $2}' "$ROOT/version.env" | tr -d '\r')
-fi
-if [[ -z "$BUILD_NUMBER" ]]; then
-  echo "Could not infer BUILD_NUMBER; set SPARKLE_BUILD_NUMBER." >&2
-  exit 1
 fi
 
 NOTES_HTML="${ZIP_DIR}/${ZIP_BASE}.html"
@@ -91,7 +83,6 @@ cp "$NOTES_HTML" "$WORK_DIR/$ZIP_BASE.html"
 pushd "$WORK_DIR" >/dev/null
 "$GEN_APPCAST" \
   --ed-key-file "$PRIVATE_KEY_FILE" \
-  --version "$BUILD_NUMBER" \
   --download-url-prefix "$DOWNLOAD_URL_PREFIX" \
   --embed-release-notes \
   --link "$FEED_URL" \
