@@ -21,8 +21,14 @@ Local packaging helpers live in `Scripts/`:
 - `Scripts/package_app.sh`: build and create `CodexSkillManager.app`.
 - `Scripts/sign-and-notarize.sh`: sign + notarize for releases.
 - `Scripts/make_appcast.sh`: generate Sparkle appcast from a zip.
+- `Scripts/generate_sparkle_keys.sh`: generate Sparkle keypair and export private key.
 
-## Release flow (commit → changelog → GitHub release)
+Sparkle env vars (set in `~/.zshrc`):
+- `SPARKLE_PUBLIC_KEY`
+- `SPARKLE_PRIVATE_KEY_FILE`
+- `SPARKLE_FEED_URL`
+
+## Release flow (commit → changelog → notarize → appcast → GitHub release)
 1) Update version: bump `MARKETING_VERSION` in `version.env`.
 2) Build: `swift build`.
 3) Commit + push:
@@ -33,8 +39,13 @@ Local packaging helpers live in `Scripts/`:
 5) Notarize and package:
    - `APP_STORE_CONNECT_API_KEY_P8="/path/to/key.p8" APP_STORE_CONNECT_KEY_ID="..." APP_STORE_CONNECT_ISSUER_ID="..." APP_IDENTITY="Developer ID Application: ..."`
    - `./Scripts/sign-and-notarize.sh`
-6) Publish GitHub release (creates the tag):
-   - `gh release create v<version> CodexSkillManager-<version>.zip --title "Codex Skill Manager <version>" --notes-file /tmp/codexskillmanager-release-notes-<version>.md`
+6) Generate Sparkle appcast entry:
+   - `SPARKLE_PRIVATE_KEY_FILE="..." ./Scripts/make_appcast.sh CodexSkillManager-<version>.zip https://raw.githubusercontent.com/Dimillian/CodexSkillManager/main/appcast.xml`
+   - `git add appcast.xml`
+   - `git commit -m "chore: update sparkle appcast"`
+   - `git push`
+7) Publish GitHub release (creates the tag):
+   - `gh release create v<version> CodexSkillManager-<version>.zip appcast.xml --title "Codex Skill Manager <version>" --notes-file /tmp/codexskillmanager-release-notes-<version>.md`
 
 ## Project layout
 - `Package.swift`: SwiftPM manifest for the executable target.
