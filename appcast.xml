@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:ns0="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
         <title>Codex Skill Manager</title>
         <link>https://raw.githubusercontent.com/Dimillian/CodexSkillManager/main/appcast.xml</link>
         <description>Codex Skill Manager updates</description>
         <item>
-            <title>0.6.2</title>
+            <title>0.6.4</title>
             <pubDate>Wed, 07 Jan 2026 20:07:03 +0100</pubDate>
             <link>https://raw.githubusercontent.com/Dimillian/CodexSkillManager/main/appcast.xml</link>
-            <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>0.6.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<!doctype html>
-<html lang="en">
-<meta charset="utf-8">
-<title>CodexSkillManager-0.6.3</title>
-<body>
-<h2>CodexSkillManager-0.6.3</h2>
-<p>Release notes not provided.</p>
-</body>
-</html>
-]]></description>
-            <enclosure url="https://github.com/Dimillian/CodexSkillManager/releases/download/v0.6.3/CodexSkillManager-0.6.3.zip" length="3247735" type="application/octet-stream" sparkle:edSignature="fF+Evi8IOdyd4Eli45fMVs2kR+hV6wmMvNjr3GmM2Cntj8HjhQRkRat1MfY7NQh+VGjls0RgWGH7IRRTkxGGDw=="/>
+            <ns0:version>1</ns0:version>
+            <ns0:shortVersionString>0.6.4</ns0:shortVersionString>
+            <ns0:minimumSystemVersion>26.0</ns0:minimumSystemVersion>
+            <description>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;CodexSkillManager-0.6.4&lt;/title&gt;
+&lt;body&gt;
+&lt;h2&gt;CodexSkillManager-0.6.4&lt;/h2&gt;
+&lt;p&gt;Release notes not provided.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</description>
+            <enclosure url="https://github.com/Dimillian/CodexSkillManager/releases/download/v0.6.4/CodexSkillManager-0.6.4.zip" length="3254049" type="application/octet-stream" ns0:edSignature="u8JYFCZBrTPJwxqJAZwDhm0wtPXYSSuxyPa9Uv2G4gA8rMD/7/4mEwW6icHRXg++Mc5qDWOZXVLcO/aKt7lDDg==" />
         </item>
     </channel>
 </rss>
