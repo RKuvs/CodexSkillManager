@@ -4,22 +4,28 @@ struct SkillListView: View {
     let skills: [Skill]
     @Binding var selection: Skill.ID?
     @Environment(SkillStore.self) private var store
+
     var body: some View {
-        List(skills, selection: $selection) { skill in
-            SkillRowView(skill: skill)
+        List(selection: $selection) {
+            ForEach(skills) { skill in
+                SkillRowView(skill: skill)
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            Task { await store.deleteSkills(ids: [skill.id]) }
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+            }
+            .onDelete { offsets in
+                let ids = offsets
+                    .filter { skills.indices.contains($0) }
+                    .map { skills[$0].id }
+                Task { await store.deleteSkills(ids: ids) }
+            }
         }
         .navigationTitle("Skills")
         .listStyle(.sidebar)
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    Task { await store.loadSkills() }
-                } label: {
-                    Label("Reload", systemImage: "arrow.clockwise")
-                }
-                .labelStyle(.iconOnly)
-            }
-        }
     }
 }
 

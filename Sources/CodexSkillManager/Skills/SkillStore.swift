@@ -153,6 +153,15 @@ import Observation
             selectedReferenceMarkdown = ""
         }
     }
+
+    func deleteSkills(ids: [Skill.ID]) async {
+        let fileManager = FileManager.default
+        for id in ids {
+            guard let skill = skills.first(where: { $0.id == id }) else { continue }
+            try? fileManager.removeItem(at: skill.folderURL)
+        }
+        await loadSkills()
+    }
 }
 
 private struct SkillMetadata {

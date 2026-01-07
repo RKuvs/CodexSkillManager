@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "CodexSkillManager",
     platforms: [
-        .macOS(.v14),
+        .macOS(.v26),
     ],
     dependencies: [
         .package(url: "https://github.com/gonzalezreal/swift-markdown-ui.git", from: "2.4.1"),

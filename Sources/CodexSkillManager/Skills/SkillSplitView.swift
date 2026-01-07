@@ -4,6 +4,7 @@ import SwiftUI
 struct SkillSplitView: View {
     @Environment(SkillStore.self) private var store
     @State private var searchText = ""
+    @State private var showingImport = false
 
     private var filteredSkills: [Skill] {
         guard !searchText.isEmpty else { return store.skills }
@@ -28,29 +29,46 @@ struct SkillSplitView: View {
             Task { await store.loadSelectedSkill() }
         }
         .searchable(text: $searchText, placement: .sidebar, prompt: "Filter skills")
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+        .toolbar(id: "main-toolbar") {
+            ToolbarItem(id: "reload") {
                 Button {
-                    openSkillsFolder()
+                    Task { await store.loadSkills() }
                 } label: {
-                    Label("Open Skills", systemImage: "folder")
+                    Label("Reload", systemImage: "arrow.clockwise")
                 }
                 .labelStyle(.iconOnly)
             }
 
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItem(id: "open") {
                 Button {
+                    openSelectedSkillFolder()
                 } label: {
-                    Label("Import Skills", systemImage: "plus")
+                    Label("Open Skill Folder", systemImage: "folder")
+                }
+                .labelStyle(.iconOnly)
+            }
+
+            ToolbarSpacer(.fixed)
+
+            ToolbarItem(id: "add") {
+                Button {
+                    showingImport = true
+                } label: {
+                    Label("Add Skill", systemImage: "plus")
                 }
                 .labelStyle(.iconOnly)
             }
         }
+        .sheet(isPresented: $showingImport) {
+            ImportSkillView()
+                .environment(store)
+        }
     }
 
-    private func openSkillsFolder() {
-        let url = FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent(".codex/skills/public")
+    private func openSelectedSkillFolder() {
+        let url = store.selectedSkill?.folderURL
+            ?? FileManager.default.homeDirectoryForCurrentUser
+                .appendingPathComponent(".codex/skills/public")
         NSWorkspace.shared.open(url)
     }
 }
