@@ -11,6 +11,16 @@ struct RemoteSkillAPI {
         let summary: String?
         let updatedAt: TimeInterval
         let latestVersion: LatestVersion?
+        let stats: Stats?
+    }
+
+    struct Stats: Decodable {
+        let comments: Int?
+        let downloads: Int?
+        let installsAllTime: Int?
+        let installsCurrent: Int?
+        let stars: Int?
+        let versions: Int?
     }
 
     struct LatestVersion: Decodable {

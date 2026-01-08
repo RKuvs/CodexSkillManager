@@ -22,6 +22,10 @@ struct RemoteSkillRowView: View {
                     TagView(text: "v\(version)")
                 }
 
+                if let statsText = statsText {
+                    TagView(text: statsText)
+                }
+
                 ForEach(SkillPlatform.allCases) { platform in
                     if installedTargets.contains(platform) {
                         TagView(text: platform.rawValue, tint: platform.badgeTint)
@@ -30,5 +34,12 @@ struct RemoteSkillRowView: View {
             }
         }
         .padding(.vertical, 6)
+    }
+
+    private var statsText: String? {
+        let downloads = skill.downloads ?? 0
+        let stars = skill.stars ?? 0
+        guard downloads > 0 || stars > 0 else { return nil }
+        return "⬇ \(downloads)  ⭐ \(stars)"
     }
 }

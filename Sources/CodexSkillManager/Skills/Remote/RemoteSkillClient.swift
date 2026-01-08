@@ -35,7 +35,9 @@ extension RemoteSkillClient {
                         displayName: item.displayName,
                         summary: item.summary,
                         latestVersion: item.latestVersion?.version,
-                        updatedAt: Date(timeIntervalSince1970: item.updatedAt / 1000)
+                        updatedAt: Date(timeIntervalSince1970: item.updatedAt / 1000),
+                        downloads: item.stats?.downloads,
+                        stars: item.stats?.stars
                     )
                 }
             },
@@ -63,7 +65,9 @@ extension RemoteSkillClient {
                         displayName: displayName,
                         summary: result.summary,
                         latestVersion: result.version,
-                        updatedAt: result.updatedAt.map { Date(timeIntervalSince1970: $0 / 1000) }
+                        updatedAt: result.updatedAt.map { Date(timeIntervalSince1970: $0 / 1000) },
+                        downloads: nil,
+                        stars: nil
                     )
                 }
             },

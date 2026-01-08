@@ -7,6 +7,8 @@ struct RemoteSkill: Identifiable, Hashable {
     let summary: String?
     let latestVersion: String?
     let updatedAt: Date?
+    let downloads: Int?
+    let stars: Int?
 }
 
 struct RemoteSkillOwner: Hashable {

@@ -80,15 +80,16 @@ struct RemoteSkillDetailView: View {
                     .font(.title3)
                     .foregroundStyle(.secondary)
             }
-            if let owner = ownerDisplayName {
-                Text("By \(owner)")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-            }
-            if let version = skill.latestVersion {
-                Text("Latest version \(version)")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
+            HStack(spacing: 6) {
+                if let owner = ownerDisplayName {
+                    TagView(text: "By \(owner)")
+                }
+                if let version = skill.latestVersion {
+                    TagView(text: "v\(version)")
+                }
+                if let statsText = statsText(for: skill) {
+                    TagView(text: statsText)
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -97,6 +98,13 @@ struct RemoteSkillDetailView: View {
     private func openClawdhubURL(for skill: RemoteSkill) {
         guard let url = URL(string: "https://clawdhub.com/skills/\(skill.slug)") else { return }
         NSWorkspace.shared.open(url)
+    }
+
+    private func statsText(for skill: RemoteSkill) -> String? {
+        let downloads = skill.downloads ?? 0
+        let stars = skill.stars ?? 0
+        guard downloads > 0 || stars > 0 else { return nil }
+        return "⬇ \(downloads)  ⭐ \(stars)"
     }
 
     private var ownerDisplayName: String? {
