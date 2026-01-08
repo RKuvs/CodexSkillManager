@@ -35,6 +35,20 @@ struct RemoteSkillAPI {
         let owner: Owner?
     }
 
+    struct SkillResponse: Decodable {
+        let skill: SkillSummary?
+        let latestVersion: LatestVersion?
+        let owner: Owner?
+    }
+
+    struct SkillSummary: Decodable {
+        let slug: String
+        let displayName: String
+        let summary: String?
+        let createdAt: TimeInterval
+        let updatedAt: TimeInterval
+    }
+
     struct Owner: Decodable {
         let handle: String?
         let displayName: String?
