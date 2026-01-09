@@ -23,6 +23,13 @@ let package = Package(
                 .unsafeFlags(["-default-isolation", "MainActor"]),
                 .unsafeFlags(["-strict-concurrency=complete"]),
                 .unsafeFlags(["-warn-concurrency"]),
+            ]),
+        .testTarget(
+            name: "CodexSkillManagerTests",
+            dependencies: [],
+            path: "Tests/CodexSkillManagerTests",
+            swiftSettings: [
+                .unsafeFlags(["-strict-concurrency=complete"]),
             ])
     ]
 )

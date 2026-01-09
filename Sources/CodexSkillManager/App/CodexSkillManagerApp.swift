@@ -8,14 +8,22 @@ import Sparkle
 @main
 struct CodexSkillManagerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    @State private var store = SkillStore()
+    @State private var customPathStore: CustomPathStore
+    @State private var store: SkillStore
     @State private var remoteStore = RemoteSkillStore(client: .live())
+
+    init() {
+        let pathStore = CustomPathStore()
+        _customPathStore = State(initialValue: pathStore)
+        _store = State(initialValue: SkillStore(customPathStore: pathStore))
+    }
 
     var body: some Scene {
         WindowGroup("Codex Skill Manager") {
             SkillSplitView()
                 .environment(store)
                 .environment(remoteStore)
+                .environment(customPathStore)
         }
         .commands {
             CommandGroup(after: .appInfo) {

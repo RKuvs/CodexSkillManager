@@ -18,7 +18,8 @@ struct Skill: Identifiable, Hashable, Sendable {
     let name: String
     let displayName: String
     let description: String
-    let platform: SkillPlatform
+    let platform: SkillPlatform?
+    let customPath: CustomSkillPath?
     let folderURL: URL
     let skillMarkdownURL: URL
     let references: [SkillReference]

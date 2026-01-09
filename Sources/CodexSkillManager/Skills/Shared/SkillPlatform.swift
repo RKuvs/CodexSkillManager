@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum SkillPlatform: String, CaseIterable, Identifiable, Hashable, Sendable {
+enum SkillPlatform: String, CaseIterable, Identifiable, Hashable, Sendable, Codable {
     case codex = "Codex"
     case claude = "Claude Code"
     case opencode = "OpenCode"
@@ -21,31 +21,32 @@ enum SkillPlatform: String, CaseIterable, Identifiable, Hashable, Sendable {
         }
     }
 
-    var rootURL: URL {
-        let home = FileManager.default.homeDirectoryForCurrentUser
+    /// Relative path from a base directory to the skills folder
+    var relativePath: String {
         switch self {
         case .codex:
-            return home.appendingPathComponent(".codex/skills/public")
+            return ".codex/skills/public"
         case .claude:
-            return home.appendingPathComponent(".claude/skills")
+            return ".claude/skills"
         case .opencode:
-            return home.appendingPathComponent(".config/opencode/skill")
+            return ".config/opencode/skill"
         case .copilot:
-            return home.appendingPathComponent(".copilot/skills")
+            return ".copilot/skills"
         }
     }
 
+    var rootURL: URL {
+        let home = FileManager.default.homeDirectoryForCurrentUser
+        return home.appendingPathComponent(relativePath)
+    }
+
+    /// Returns the skills URL for this platform within a given base directory
+    func skillsURL(in baseURL: URL) -> URL {
+        baseURL.appendingPathComponent(relativePath)
+    }
+
     var description: String {
-        switch self {
-        case .codex:
-            return "Install in \(rootURL.path)"
-        case .claude:
-            return "Install in \(rootURL.path)"
-        case .opencode:
-            return "Install in \(rootURL.path)"
-        case .copilot:
-            return "Install in \(rootURL.path)"
-        }
+        "Install in \(rootURL.path)"
     }
 
     var badgeTint: Color {
