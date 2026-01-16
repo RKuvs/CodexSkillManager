@@ -11,6 +11,7 @@ struct SkillListView: View {
     let remoteLatestState: RemoteSkillStore.LoadState
     let remoteQuery: String
     let installedPlatforms: [String: Set<SkillPlatform>]
+    let onInstallRemoteSkill: (RemoteSkill) -> Void
 
     @Binding var source: SkillSource
     @Binding var localSelection: Skill.ID?
@@ -97,7 +98,8 @@ struct SkillListView: View {
             ForEach(remoteSearchResults) { skill in
                 RemoteSkillRowView(
                     skill: skill,
-                    installedTargets: installedPlatforms[skill.slug, default: []]
+                    installedTargets: installedPlatforms[skill.slug, default: []],
+                    onInstall: { onInstallRemoteSkill(skill) }
                 )
             }
         }
@@ -124,7 +126,8 @@ struct SkillListView: View {
             ForEach(remoteLatestSkills) { skill in
                 RemoteSkillRowView(
                     skill: skill,
-                    installedTargets: installedPlatforms[skill.slug, default: []]
+                    installedTargets: installedPlatforms[skill.slug, default: []],
+                    onInstall: { onInstallRemoteSkill(skill) }
                 )
             }
         }

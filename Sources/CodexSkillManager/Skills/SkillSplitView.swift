@@ -85,6 +85,9 @@ struct SkillSplitView: View {
             remoteLatestState: remoteStore.latestState,
             remoteQuery: searchText,
             installedPlatforms: installedPlatforms,
+            onInstallRemoteSkill: { skill in
+                presentRemoteInstallSheet(for: skill)
+            },
             source: $source,
             localSelection: localSelectionBinding,
             remoteSelection: remoteSelectionBinding
@@ -237,10 +240,13 @@ struct SkillSplitView: View {
         NSWorkspace.shared.open(url)
     }
 
-    private func presentRemoteInstallSheet() {
-        guard let skill = remoteStore.selectedSkill else { return }
-        installTargets = defaultInstallTargets(for: skill.slug)
-        installSkill = skill
+    private func presentRemoteInstallSheet(for skill: RemoteSkill? = nil) {
+        if let skill {
+            remoteStore.selectedSkillID = skill.id
+        }
+        guard let resolved = skill ?? remoteStore.selectedSkill else { return }
+        installTargets = defaultInstallTargets(for: resolved.slug)
+        installSkill = resolved
     }
 
     private var downloadErrorBinding: Binding<Bool> {

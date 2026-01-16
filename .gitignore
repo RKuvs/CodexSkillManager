@@ -1,3 +1,4 @@
 /.build
+/.swiftpm
 /CodexSkillManager.app
 *.zip
