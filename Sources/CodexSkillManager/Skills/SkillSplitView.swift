@@ -114,14 +114,19 @@ struct SkillSplitView: View {
                 .disabled(isDownloadingRemote || !canDownloadRemoteSkill)
             }
 
-            ToolbarSpacer(.fixed)
+            if #available(macOS 26.0, *) {
+                ToolbarSpacer(.fixed)
+            }
+
         }
 
         ToolbarItem(id: "open") {
             openFolderItem
         }
 
-        ToolbarSpacer(.fixed)
+        if #available(macOS 26.0, *) {
+            ToolbarSpacer(.fixed)
+        }
 
         ToolbarItem(id: "add") {
             Menu {
